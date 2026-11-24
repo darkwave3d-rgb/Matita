@@ -176,7 +176,7 @@ def B(name, default, desc=""):
     return BoolProperty(name=name, description=desc, default=default, update=_upd)
 
 
-class SketchRenderSettings(bpy.types.PropertyGroup):
+class MatitaSettings(bpy.types.PropertyGroup):
     # stato interno (sulla Scena; vedi core.STATE_KEYS)
     is_setup: BoolProperty(default=False)
     lines_frozen: BoolProperty(default=False)   # linee calcolate una volta e conservate
@@ -423,7 +423,7 @@ class SketchRenderSettings(bpy.types.PropertyGroup):
                  "Accumulo di pigmento sul bordo della campitura, come nell'acquerello vero")
 
 
-_assign_updates(SketchRenderSettings)
+_assign_updates(MatitaSettings)
 
 
 # ---------------------------------------------------------------------------
@@ -442,17 +442,17 @@ def _set_obj_tone(self, value):
 
 
 def register():
-    bpy.utils.register_class(SketchRenderSettings)
-    bpy.types.Scene.sketch_render = PointerProperty(type=SketchRenderSettings)
+    bpy.utils.register_class(MatitaSettings)
+    bpy.types.Scene.sketch_render = PointerProperty(type=MatitaSettings)
     # le impostazioni regolabili stanno sul World della carta (vedi core.settings)
-    bpy.types.World.sketch_render = PointerProperty(type=SketchRenderSettings)
+    bpy.types.World.sketch_render = PointerProperty(type=MatitaSettings)
     bpy.types.Object.sketch_tone_id = IntProperty(default=0, options={"HIDDEN"})
     bpy.types.Object.sketch_tone = EnumProperty(
         name="Retino dell'oggetto", items=tones.object_items, get=_get_obj_tone, set=_set_obj_tone,
         description="Motivo del retino per questo oggetto: per esempio mattoni per i muri, "
                     "calcestruzzo per i solai")
     bpy.types.Object.sketch_color = FloatVectorProperty(
-        name="Colore Sketch", size=4, subtype="COLOR", min=0.0, max=1.0, default=(0.0, 0.0, 0.0, 0.0),
+        name="Colore Matita", size=4, subtype="COLOR", min=0.0, max=1.0, default=(0.0, 0.0, 0.0, 0.0),
         description="Tinta dell'oggetto per \"Colore per oggetto\" (alfa 0 = colore predefinito)")
 
 
@@ -462,4 +462,4 @@ def unregister():
             delattr(bpy.types.Object, name)
     del bpy.types.World.sketch_render
     del bpy.types.Scene.sketch_render
-    bpy.utils.unregister_class(SketchRenderSettings)
+    bpy.utils.unregister_class(MatitaSettings)

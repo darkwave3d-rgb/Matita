@@ -9,8 +9,8 @@ la funzione sync() in core.py li aggiorna senza ricostruire il grafo.
 
 import math
 
-SURFACE_MAT = "SketchRender_Surface"
-WORLD_NAME = "SketchRender_Paper"
+SURFACE_MAT = "Matita_Surface"
+WORLD_NAME = "Matita_Paper"
 
 # Il materiale contiene solo i nodi delle tecniche attive: una tecnica spenta
 # non costa nulla alla GPU. La "firma" salvata sul materiale dice a core.sync()

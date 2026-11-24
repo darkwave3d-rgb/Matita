@@ -34,12 +34,17 @@ from . import nodes, papers, tips, tones
 COLLECTION = "Matita"
 # collezioni create dalle versioni di prova: si riconoscono e si rinominano
 OLD_COLLECTIONS = ("Sketch Studio", "Sketch Render")
-INK_OBJ = "Sketch_Ink"
-SUN_OBJ = "Sketch_Sun"
-CAM_OBJ = "Sketch_Camera"
-INK_MAT = "SketchRender_InkLine"
-CONSTR_MAT = "SketchRender_ConstrLine"
-HIDDEN_MAT = "SketchRender_HiddenLine"
+INK_OBJ = "Matita_Ink"
+SUN_OBJ = "Matita_Sun"
+CAM_OBJ = "Matita_Camera"
+INK_MAT = "Matita_InkLine"
+CONSTR_MAT = "Matita_ConstrLine"
+HIDDEN_MAT = "Matita_HiddenLine"
+# nomi dei dati creati dalle versioni di prova: (vecchio, nuovo). Si rinominano da soli.
+OLD_NAMES = (("Sketch_Ink", INK_OBJ), ("Sketch_Sun", SUN_OBJ), ("Sketch_Camera", CAM_OBJ),
+             ("SketchRender_InkLine", INK_MAT), ("SketchRender_ConstrLine", CONSTR_MAT),
+             ("SketchRender_HiddenLine", HIDDEN_MAT), ("SketchRender_Surface", nodes.SURFACE_MAT),
+             ("SketchRender_Paper", nodes.WORLD_NAME))
 LAYER_INK = "Lines"
 LAYER_CONSTR = "Construction"
 LAYER_HIDDEN = "Hidden"
@@ -389,7 +394,20 @@ def add_sun(scene):
 
 def _is_own_sun(obj):
     return obj is not None and obj.type == "LIGHT" and (
-        obj.get(OWNED) or obj.name.startswith(SUN_OBJ))
+        obj.get(OWNED) or obj.name.startswith((SUN_OBJ, "Sketch_Sun")))
+
+
+def _rename_old_data(scene):
+    """File delle versioni di prova: oggetti, dati, materiali e World creati dal
+    plugin prendono i nomi nuovi (solo quelli di questa scena, "Nome [Scena]")."""
+    pools = (bpy.data.objects, bpy.data.materials, bpy.data.worlds, bpy.data.lights,
+             bpy.data.cameras, _gp_datablocks())
+    for old, new in OLD_NAMES:
+        old_name, new_name = _n(old, scene), _n(new, scene)
+        for pool in pools:
+            idb = pool.get(old_name)
+            if idb is not None and pool.get(new_name) is None:
+                idb.name = new_name
 
 
 def _features(p):
@@ -455,7 +473,7 @@ def material_color(obj):
 
 
 def fill_object_colors(scene, only_missing=True):
-    """Copia nel "Colore Sketch" di ogni oggetto il colore del suo materiale."""
+    """Copia nel "Colore Matita" di ogni oggetto il colore del suo materiale."""
     n = 0
     for obj in scene.objects:
         if obj.type not in {"MESH", "CURVE", "SURFACE", "FONT", "META"}:
@@ -487,6 +505,7 @@ def setup(scene):
     center, size = _scene_bounds(scene)
     if any(bpy.data.collections.get(_n(b, scene)) is not None for b in OLD_COLLECTIONS):
         _collection(scene)    # file di una versione precedente: rinomina la collezione
+    _rename_old_data(scene)
 
     # camera
     if scene.camera is None:
@@ -1202,9 +1221,10 @@ def _remove_object(obj):
     data = obj.data
     mats = list(data.materials) if hasattr(data, "materials") else []
     bpy.data.objects.remove(obj)
-    ids = [m for m in mats if m and m.users == 0]
+    # prima i dati (che usano i materiali), poi i materiali rimasti senza utenti
     if data and data.users == 0:
-        ids.append(data)
+        bpy.data.batch_remove([data])
+    ids = [m for m in mats if m and m.users == 0]
     if ids:
         bpy.data.batch_remove(ids)
 

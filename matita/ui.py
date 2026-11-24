@@ -286,7 +286,7 @@ class SKETCH_OT_object_colors(bpy.types.Operator):
     bl_idname = "matita.object_colors"
     bl_label = "Colori dai materiali"
     bl_description = ("Copia in ogni oggetto il colore del suo materiale originale "
-                      "(sovrascrive i colori Sketch già impostati)")
+                      "(sovrascrive i colori Matita già impostati)")
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):

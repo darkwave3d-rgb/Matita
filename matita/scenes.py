@@ -427,7 +427,7 @@ ENUM_ITEMS = [(key, d["label"], d["description"]) for key, d in DEMOS.items()]
 
 
 def scene_name(key):
-    return "Sketch Demo - " + DEMOS[key]["label"].split(" — ")[0]
+    return "Matita Demo - " + DEMOS[key]["label"].split(" — ")[0]
 
 
 def _discard_scene(scene):

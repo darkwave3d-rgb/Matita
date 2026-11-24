@@ -1,21 +1,37 @@
-# Python
+# Su GitHub va SOLO ciò che è elencato qui sotto: tutto il resto della cartella
+# (note, liste di lavoro, configurazioni, render di prova, file .blend, zip,
+# progetti collegati) resta sul PC. Un file nuovo è escluso finché non lo si
+# aggiunge esplicitamente a questa lista.
+/*
+!/matita/
+!/docs/
+!/tools/
+!/README.md
+!/README.it.md
+!/CHANGELOG.md
+!/LICENSE
+!/.gitignore
+!/.gitattributes
+
+# anche dentro le cartelle pubbliche: niente file di lavoro o configurazioni
 __pycache__/
 *.py[cod]
-
-# pacchetti costruiti: si pubblicano come allegati delle Release, non nel codice
-# built packages: published as Release assets, not in the source tree
-*.zip
-
-# file di lavoro di Blender e render di prova / Blender work files and test renders
 *.blend
 *.blend1
-*.blend@
-renders/
-
-# porting per Cinema 4D: progetto separato / Cinema 4D port: separate project
-sketch_render_c4d/
-
-# sistema / OS
+*.zip
+*.log
+*.bak
+*.tmp
+*.local
+*.local.*
+.env*
+.claude/
+.vscode/
+.idea/
+CLAUDE.md
+DA_FARE.md
+TODO.md
+NOTE*.md
 Thumbs.db
 desktop.ini
 .DS_Store
