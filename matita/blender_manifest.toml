@@ -1,0 +1,13 @@
+schema_version = "1.0.0"
+
+id = "matita"
+version = "1.0.0"
+name = "Matita"
+tagline = "Render a schizzo: linee a mano, tratteggi, stili dei maestri"
+maintainer = "Matita contributors"
+type = "add-on"
+
+blender_version_min = "4.3.0"
+
+license = ["SPDX:GPL-3.0-or-later"]
+tags = ["Render", "Grease Pencil", "Lighting"]

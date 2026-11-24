@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# pacchetti costruiti: si pubblicano come allegati delle Release, non nel codice
+# built packages: published as Release assets, not in the source tree
+*.zip
+
+# file di lavoro di Blender e render di prova / Blender work files and test renders
+*.blend
+*.blend1
+*.blend@
+renders/
+
+# porting per Cinema 4D: progetto separato / Cinema 4D port: separate project
+sketch_render_c4d/
+
+# sistema / OS
+Thumbs.db
+desktop.ini
+.DS_Store

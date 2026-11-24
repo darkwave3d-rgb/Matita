@@ -1,0 +1,8 @@
+# a capo LF per tutti i file di testo, su ogni sistema (niente conversione in CRLF)
+* text=auto eol=lf
+
+# file binari: mai toccati
+*.png binary
+*.jpg binary
+*.zip binary
+*.blend binary
