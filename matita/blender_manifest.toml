@@ -1,7 +1,7 @@
 schema_version = "1.0.0"
 
 id = "matita"
-version = "1.0.0"
+version = "1.0.1"
 name = "Matita"
 tagline = "Render a schizzo: linee a mano, tratteggi, stili dei maestri"
 maintainer = "Matita contributors"

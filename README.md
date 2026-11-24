@@ -79,8 +79,6 @@ to Leonardo, Michelangelo, Piranesi, Dürer, Rembrandt, Canaletto and Hokusai.
    choose **Install from Disk…**, then pick the zip.
 3. Open the sidebar in the 3D viewport (`N`) and select the **Matita** tab.
 
-If you installed a pre-release version under a different name, uninstall it first.
-
 ## Quick start
 
 1. Pick a style from the *Stile* menu and press **Attiva Matita** (or try a demo from

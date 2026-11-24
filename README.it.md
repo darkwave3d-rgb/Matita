@@ -79,8 +79,6 @@ da brevetto fino a Leonardo, Michelangelo, Piranesi, Dürer, Rembrandt, Canalett
    **Installa da disco…**, poi seleziona lo zip.
 3. Apri la barra laterale del viewport 3D (`N`) e scegli la scheda **Matita**.
 
-Se avevi installato una versione di prova con un altro nome, disinstallala prima.
-
 ## Primi passi
 
 1. Scegli uno stile dal menu *Stile* e premi **Attiva Matita** (oppure prova una demo da
